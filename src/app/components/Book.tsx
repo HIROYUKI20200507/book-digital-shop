@@ -15,7 +15,7 @@ type BookProps = {
 const Book = ({ book }: BookProps) => {
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
-  const user = session?.user;
+  const user: any = session?.user;
   const router = useRouter();
 
   const startCheckout = async () => {
@@ -23,11 +23,10 @@ const Book = ({ book }: BookProps) => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: book.title, price: book.price }),
+        body: JSON.stringify({ title: book.title, price: book.price, userId: user.id, bookId: book.id }),
       });
 
       const responseData = await response.json();
-      console.log("responseData", responseData);
 
       if (responseData) {
         router.push(responseData.checkout_url);
@@ -53,7 +52,6 @@ const Book = ({ book }: BookProps) => {
     }
     startCheckout();
     setShowModal(false);
-    alert("購入しました！");
   };
   return (
     <>

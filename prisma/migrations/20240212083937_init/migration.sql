@@ -41,9 +41,8 @@ CREATE TABLE "User" (
 CREATE TABLE "Purchase" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "productId" TEXT NOT NULL,
+    "bookId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Purchase_pkey" PRIMARY KEY ("id")
 );
