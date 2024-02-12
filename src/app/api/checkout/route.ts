@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -21,5 +22,9 @@ export async function POST(req: Request, res: Response) {
       success_url: `http://localhost:3000/book/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "http://localhost:3000",
     });
-  } catch (error) {}
+
+    return NextResponse.json({ checkout_url: session.url });
+  } catch (error: any) {
+    return NextResponse.json(error.message);
+  }
 }
