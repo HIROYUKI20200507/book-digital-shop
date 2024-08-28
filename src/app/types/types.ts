@@ -1,11 +1,12 @@
 type BookType = {
   id: number;
   title: string;
-  contents: string;
+  content: string;
   price: number;
   thumbnail: { url: string };
-  createAt: string;
-  updateAt: string;
+  createdAt: string;
+  publishedAt: string;
+  updatedAt: string;
 };
 
 export type { BookType };
